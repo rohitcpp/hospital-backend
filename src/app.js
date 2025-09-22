@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const authRoutes = require('./routes/authRoutes');
+const doctorRoutes = require('./routes/doctorroutes'); // added
 
 const app = express();
 
@@ -13,7 +14,9 @@ app.use(morgan('dev'));
 // health check
 app.get('/', (req, res) => res.json({ ok: true }));
 
+// routes
 app.use('/api/auth', authRoutes);
+app.use('/api', doctorRoutes); // added
 
 // global error handler (simple)
 app.use((err, req, res, next) => {

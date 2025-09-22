@@ -1,6 +1,6 @@
-const Doctor = require('../models/Doctor');
+const Doctor = require('../models/doctors');
 
-//Create a doctor (only Admin is allowed)
+// Create a doctor (Admin only)
 const createDoctor = async (req, res) => {
   try {
     const doctor = new Doctor(req.body);
@@ -11,7 +11,7 @@ const createDoctor = async (req, res) => {
   }
 };
 
-//Get all doctors
+// Get all doctors (Admin + Doctor)
 const getDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.find();
@@ -21,4 +21,46 @@ const getDoctors = async (req, res) => {
   }
 };
 
-module.exports = { createDoctor, getDoctors };
+// Update a doctor by ID (Admin only)
+const updateDoctor = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const doctor = await Doctor.findByIdAndUpdate(id, req.body, {
+      new: true,        // return the updated document
+      runValidators: true
+    });
+
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+
+    res.json(doctor);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// Delete a doctor by ID (Admin only)
+const deleteDoctor = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const doctor = await Doctor.findByIdAndDelete(id);
+
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+
+    res.json({ message: 'Doctor deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = {
+  createDoctor,
+  getDoctors,
+  updateDoctor,
+  deleteDoctor
+};

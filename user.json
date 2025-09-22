@@ -1,0 +1,26 @@
+[
+  {
+    "dept": "Cardiology",
+    "description": "Specializes in diagnosing and treating heart conditions, including surgeries and critical care."
+  },
+  {
+    "dept": "Neurology",
+    "description": "Focuses on disorders of the brain, spinal cord, and nervous system."
+  },
+  {
+    "dept": "Orthopedics",
+    "description": "Deals with the musculoskeletal system, including bones, joints, muscles, and ligaments."
+  },
+  {
+    "dept": "Pediatrics",
+    "description": "Provides healthcare for infants, children, and adolescents."
+  },
+  {
+    "dept": "Dermatology",
+    "description": "Specializes in skin, hair, and nail conditions and treatments."
+  },
+  {
+    "dept": "Emergency",
+    "description": "Provides immediate medical care for acute illnesses and traumatic injuries."
+  }
+]

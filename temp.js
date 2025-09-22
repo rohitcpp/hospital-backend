@@ -1,32 +1,30 @@
 const mongoose = require("mongoose");
-const Department = require("./src/models/Department");
+const Appointment = require("./src/models/appointment");
 const fs = require("fs");
 
-async function insertDepartments() {
+async function insertAppointments() {
   try {
-    // connect to MongoDB
-    await mongoose.connect("mongodb://127.0.0.1:27017/hospital-backend", {
-      // no need for deprecated options in mongoose v6+
-    });
+    // Connect to MongoDB
+    await mongoose.connect("mongodb://127.0.0.1:27017/hospital-backend");
     console.log("MongoDB connected");
 
-    // load departments.json
+    // Load appointments.json
     const data = fs.readFileSync("user.json", "utf-8");
-    const departments = JSON.parse(data);
+    const appointments = JSON.parse(data);
 
-    // clear old departments
-    await Department.deleteMany({});
-    console.log("Old departments cleared");
+    // Clear old appointments
+    await Appointment.deleteMany({});
+    console.log("Old appointments cleared");
 
-    // insert new departments
-    await Department.insertMany(departments);
-    console.log("Departments inserted successfully!");
+    // Insert new appointments
+    await Appointment.insertMany(appointments);
+    console.log("Appointments inserted successfully!");
 
     process.exit(0);
   } catch (err) {
-    console.error("Error inserting departments:", err);
+    console.error("Error inserting appointments:", err);
     process.exit(1);
   }
 }
 
-insertDepartments();
+insertAppointments();

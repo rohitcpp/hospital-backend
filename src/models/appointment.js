@@ -13,7 +13,7 @@ const appointmentSchema = new mongoose.Schema({
   },
   doctor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Changed from 'Doctor' to 'User'
+    ref: 'User', 
     required: true
   },
   status: {

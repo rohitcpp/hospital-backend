@@ -1,15 +1,13 @@
-const User = require('../models/user'); // previously Doctor model
+const User = require('../models/user'); 
 const bcrypt = require('bcrypt');
 
-// Create a doctor
 const createDoctor = async (req, res) => {
   try {
-    // Hash password (set default or from req.body)
     const password = req.body.password || "doctor@123"; 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const doctor = new User({
-      ...req.body,           // other doctor fields (name, phno, etc.)
+      ...req.body,           
       password: hashedPassword,
       role: 'doctor'
     });
@@ -23,7 +21,7 @@ const createDoctor = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
-    const doctor = await User.findById(req.user.id); // req.user set by protect middleware
+    const doctor = await User.findById(req.user.id); 
     const { oldPassword, newPassword } = req.body;
 
     const isMatch = await bcrypt.compare(oldPassword, doctor.password);
@@ -39,7 +37,6 @@ const changePassword = async (req, res) => {
 };
 
 
-// Get all doctors
 const getDoctors = async (req, res) => {
   try {
     const doctors = await User.find({ role: 'doctor' });
@@ -49,12 +46,10 @@ const getDoctors = async (req, res) => {
   }
 };
 
-// Update a doctor
 const updateDoctor = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // If password is being updated, hash it
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, 10);
     }
@@ -75,7 +70,6 @@ const updateDoctor = async (req, res) => {
   }
 };
 
-// Delete a doctor
 const deleteDoctor = async (req, res) => {
   try {
     const { id } = req.params;

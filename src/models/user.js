@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  // Auth fields
   email: {
     type: String,
     required: true,
     unique: true,
-    match: /.+\@.+\..+/   // same validation as Doctor
+    match: /.+\@.+\..+/  
   },
   password: { type: String, required: true },
 
@@ -16,11 +15,11 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'doctor'] 
   },
 
-  // Doctor-specific fields (optional for admins)
+
   name: { type: String },
   phno: { 
     type: String,
-    match: /^[0-9]{10}$/   // same 10-digit phone validation
+    match: /^[0-9]{10}$/  
   },
   spec: { type: String },
   dept: { 

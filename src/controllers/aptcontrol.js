@@ -1,12 +1,11 @@
 const Appointment = require('../models/appointment');
 const mongoose = require('mongoose');
 
-// Create a new appointment
 const createAppointment = async (req, res) => {
   try {
     const { patient, dept, doctor } = req.body;
 
-    // Validate references
+    
     const [patientDoc, deptDoc, doctorDoc] = await Promise.all([
       mongoose.model('Patient').findById(patient),
       mongoose.model('Department').findById(dept),
@@ -26,18 +25,14 @@ const createAppointment = async (req, res) => {
   }
 };
 
-// Get all appointments with populated fields
 const getAppointments = async (req, res) => {
   try {
-    // Get the logged-in user's ID and role from req.user (set by protect middleware)
     const { id: userId, role } = req.user;
 
-    // Define the query based on role
     let query = {};
     if (role === 'doctor') {
-      query.doctor = userId; // Filter appointments by the logged-in doctor's ID
+      query.doctor = userId; 
     }
-    // Admins can see all appointments, so no filter is applied for 'admin' role
 
     const appointments = await Appointment.find(query)
       .populate('patient', 'name email')
@@ -51,7 +46,6 @@ const getAppointments = async (req, res) => {
   }
 };
 
-// Get a single appointment by ID with populated fields
 const getAppointmentById = async (req, res) => {
   try {
     const appointment = await Appointment.findById(req.params.id)
@@ -68,12 +62,10 @@ const getAppointmentById = async (req, res) => {
   }
 };
 
-// Update an appointment
 const updateAppointment = async (req, res) => {
   try {
     const { patient, dept, doctor } = req.body;
 
-    // Validate references if provided
     if (patient || dept || doctor) {
       const checks = [];
       if (patient) checks.push(mongoose.model('Patient').findById(patient));
@@ -102,7 +94,6 @@ const updateAppointment = async (req, res) => {
   }
 };
 
-// Delete an appointment
 const deleteAppointment = async (req, res) => {
   try {
     const deletedAppointment = await Appointment.findByIdAndDelete(req.params.id);

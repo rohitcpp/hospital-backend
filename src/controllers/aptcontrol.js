@@ -1,6 +1,5 @@
 const Appointment = require('../models/Appointment');
 
-// CREATE a new appointment
 const createAppointment = async (req, res) => {
   try {
     const appointment = new Appointment(req.body);
@@ -11,20 +10,18 @@ const createAppointment = async (req, res) => {
   }
 };
 
-// GET all appointments
 const getAppointments = async (req, res) => {
   try {
     const appointments = await Appointment.find()
       .populate('patient', 'name email')
       .populate('doctor', 'name specialty')
-      .populate('dept', 'name'); // populate department as well
+      .populate('dept', 'name'); 
     res.json(appointments);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-// GET a single appointment by ID
 const getAppointmentById = async (req, res) => {
   try {
     const appointment = await Appointment.findById(req.params.id)
@@ -38,7 +35,6 @@ const getAppointmentById = async (req, res) => {
   }
 };
 
-// UPDATE an appointment by ID
 const updateAppointment = async (req, res) => {
   try {
     const updatedAppointment = await Appointment.findByIdAndUpdate(
@@ -53,7 +49,6 @@ const updateAppointment = async (req, res) => {
   }
 };
 
-// DELETE an appointment by ID
 const deleteAppointment = async (req, res) => {
   try {
     const deletedAppointment = await Appointment.findByIdAndDelete(req.params.id);

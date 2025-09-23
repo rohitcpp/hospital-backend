@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const { Schema, Types, model } = mongoose;  // <-- destructure Types here
+const { Schema, Types, model } = mongoose; 
 const DoctorSchema=new mongoose.Schema({
 name:{type:String, required:true},
 email:

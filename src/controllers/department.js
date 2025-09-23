@@ -1,16 +1,13 @@
 const Department = require('../models/Department');
 
-// Create a department
 exports.createDepartment = async (req, res) => {
   try {
     const { dept, description } = req.body;
 
-    // Validate department
     if (!dept?.trim()) {
       return res.status(400).json({ success: false, message: 'Department name is required' });
     }
 
-    // Validate description
     if (!description?.trim() || description.trim().length < 10) {
       return res.status(400).json({ 
         success: false, 
@@ -18,13 +15,11 @@ exports.createDepartment = async (req, res) => {
       });
     }
 
-    // Check if department already exists
     const exists = await Department.findOne({ dept: dept.trim() });
     if (exists) {
       return res.status(409).json({ success: false, message: 'Department already exists' });
     }
 
-    // Create department
     const department = await Department.create({ 
       dept: dept.trim(), 
       description: description.trim() 
@@ -36,7 +31,6 @@ exports.createDepartment = async (req, res) => {
   }
 };
 
-// Get all departments
 exports.getDepartments = async (req, res) => {
   try {
     const departments = await Department.getAllDepartments();
@@ -46,18 +40,15 @@ exports.getDepartments = async (req, res) => {
   }
 };
 
-// Update a department
 exports.updateDepartment = async (req, res) => {
   try {
     const { id } = req.params;
     const { dept, description } = req.body;
 
-    // Validate department if provided
     if (dept && !dept.trim()) {
       return res.status(400).json({ success: false, message: 'Department name cannot be empty' });
     }
 
-    // Validate description if provided
     if (description && description.trim().length < 10) {
       return res.status(400).json({ 
         success: false, 
@@ -84,7 +75,6 @@ exports.updateDepartment = async (req, res) => {
   }
 };
 
-// Delete a department
 exports.deleteDepartment = async (req, res) => {
   try {
     const { id } = req.params;

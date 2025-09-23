@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 
 router.post('/login', authController.login);
 
-// Temporary signup route to create a test user
 router.post('/signup', async (req, res) => {
   try {
     const { email, password, role } = req.body;

@@ -1,6 +1,5 @@
 const Doctor = require('../models/doctors');
 
-// Create a doctor (Admin only)
 const createDoctor = async (req, res) => {
   try {
     const doctor = new Doctor(req.body);
@@ -11,7 +10,6 @@ const createDoctor = async (req, res) => {
   }
 };
 
-// Get all doctors (Admin + Doctor)
 const getDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.find();
@@ -21,13 +19,12 @@ const getDoctors = async (req, res) => {
   }
 };
 
-// Update a doctor by ID (Admin only)
 const updateDoctor = async (req, res) => {
   try {
     const { id } = req.params;
 
     const doctor = await Doctor.findByIdAndUpdate(id, req.body, {
-      new: true,        // return the updated document
+      new: true,        
       runValidators: true
     });
 
@@ -41,7 +38,6 @@ const updateDoctor = async (req, res) => {
   }
 };
 
-// Delete a doctor by ID (Admin only)
 const deleteDoctor = async (req, res) => {
   try {
     const { id } = req.params;

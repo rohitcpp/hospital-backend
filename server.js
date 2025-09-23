@@ -10,7 +10,6 @@ connectDB();
 
 const app = express();
 
-// coRs
 app.use(cors({
   origin: 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
@@ -19,7 +18,6 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-// rooutes
 const patientRoutes = require('./src/routes/patient');
 const deptRoutes = require('./src/routes/dept');
 const doctorRoutes = require('./src/routes/doctorroutes');

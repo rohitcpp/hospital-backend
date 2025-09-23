@@ -4,7 +4,6 @@ const appointmentController = require('../controllers/aptcontrol');
 
 const router = express.Router();
 
-// CREATE a new appointment
 router.post(
   '/',
   protect,
@@ -12,7 +11,6 @@ router.post(
   appointmentController.createAppointment
 );
 
-// GET all appointments
 router.get(
   '/',
   protect,
@@ -20,7 +18,6 @@ router.get(
   appointmentController.getAppointments
 );
 
-// GET a single appointment by ID
 router.get(
   '/:id',
   protect,
@@ -28,7 +25,6 @@ router.get(
   appointmentController.getAppointmentById
 );
 
-// UPDATE an appointment by ID
 router.put(
   '/:id',
   protect,
@@ -36,7 +32,6 @@ router.put(
   appointmentController.updateAppointment
 );
 
-// DELETE an appointment by ID
 router.delete(
   '/:id',
   protect,

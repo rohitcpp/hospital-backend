@@ -8,7 +8,7 @@ const express = require('express');
 
   router.post('/signup', async (req, res) => {
     try {
-      console.log('Received body:', req.body); // Log the raw body
+      console.log('Received body:', req.body); 
       const { email, password, role } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = new User({ email, password: hashedPassword, role });

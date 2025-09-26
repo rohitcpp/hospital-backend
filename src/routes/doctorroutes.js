@@ -1,4 +1,4 @@
-const express = require('express'); // Must be express
+const express = require('express'); 
 const router = express.Router();
 const doctorController = require('../controllers/doctorController');
 const { protect, authorize } = require('../middleware/authMiddleware');

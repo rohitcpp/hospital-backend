@@ -32,11 +32,11 @@ router.put(
   appointmentController.updateAppointment
 );
 
-router.delete(
+/*router.delete(
   '/:id',
   protect,
   authorize('admin', 'doctor'),
   appointmentController.deleteAppointment
-);
+);*/
 
 module.exports = router;

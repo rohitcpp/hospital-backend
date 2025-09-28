@@ -94,7 +94,7 @@ const updateAppointment = async (req, res) => {
   }
 };
 
-const deleteAppointment = async (req, res) => {
+/*const deleteAppointment = async (req, res) => {
   try {
     const deletedAppointment = await Appointment.findByIdAndDelete(req.params.id);
 
@@ -105,12 +105,12 @@ const deleteAppointment = async (req, res) => {
     console.error('Error deleting appointment:', err);
     res.status(500).json({ message: err.message });
   }
-};
+};*/
 
 module.exports = {
   createAppointment,
   getAppointments,
   getAppointmentById,
   updateAppointment,
-  deleteAppointment,
+  //deleteAppointment,
 };

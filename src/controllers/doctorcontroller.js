@@ -70,7 +70,7 @@ const updateDoctor = async (req, res) => {
   }
 };
 
-const deleteDoctor = async (req, res) => {
+/*const deleteDoctor = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -84,11 +84,11 @@ const deleteDoctor = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};
+};*/
 
 module.exports = {
   createDoctor,
   getDoctors,
   updateDoctor,
-  deleteDoctor
+  //deleteDoctor
 };
